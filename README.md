@@ -2,6 +2,9 @@
 
 *Convert base unit values to multiples and submultiples*
 
+[![Master Build Status](https://secure.travis-ci.org/tecnickcom/unitmulti.png?branch=master)](https://travis-ci.org/tecnickcom/unitmulti?branch=master)
+[![Master Coverage Status](https://coveralls.io/repos/tecnickcom/unitmulti/badge.svg?branch=master&service=github)](https://coveralls.io/github/tecnickcom/unitmulti?branch=master)
+
 * **category**    Library
 * **copyright**   2019 Tecnick.com LTD
 * **license**     see [LICENSE](LICENSE)
