@@ -1,0 +1,34 @@
+package:
+  name: unitmulti
+  version: 1.0.0
+
+source:
+  path: ..
+
+build:
+  number: 1
+
+requirements:
+  host:
+    - python
+    - setuptools
+  run:
+    - python
+
+test:
+  requires:
+    - python
+    - setuptools
+    - coverage
+    - pytest
+    - pytest-cov
+    - pytest-benchmark >=3.2.*
+    - pycodestyle
+  imports:
+    - unitmulti
+
+about:
+  home: https://github.com/tecnickcom/unitmulti
+  license: MIT
+  license_file: LICENSE
+  summary: Convert base unit values to multiples and submultiples

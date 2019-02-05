@@ -1,0 +1,4 @@
+#!/bin/false
+
+source ../env-dev-unitmulti/bin/activate
+python setup.py develop
