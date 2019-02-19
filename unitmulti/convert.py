@@ -7,7 +7,7 @@ class Convert(object):
     SI_STEP = 10**3   # (1000) : multiplication factor for SI (International System) units
     IEC_STEP = 2**10  # (1024) : multiplication factor for IEC (International Electrotechnical Commission) units
 
-    UNIT_MULTIPLE = ['', 'K', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y']    # prefixes for multiples
+    UNIT_MULTIPLE = ['', 'K', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y']     # prefixes for multiples
     UNIT_SUBMULTIPLE = ['', 'm', 'u', 'n', 'p', 'f', 'a', 'z', 'y']  # prefixes for submultiples
 
     PRECISION = 3  # number of decimal places to keep
@@ -30,6 +30,7 @@ class Convert(object):
                 unit prefix
         """
         value = float(value)
+        prefix = ''
         for prefix in self.UNIT_MULTIPLE:
             if value < step:
                 break
@@ -97,6 +98,7 @@ class Convert(object):
         value = float(value)
         if value == 0:
             return value, base_unit
+        prefix = ''
         for prefix in self.UNIT_SUBMULTIPLE:
             if value >= 1:
                 break
@@ -104,7 +106,8 @@ class Convert(object):
                 value = value * self.SI_STEP
         return round(value, self.PRECISION), '{0}{1}'.format(prefix, base_unit)
 
-    def format_unit_value(self, value, unit):
+    @staticmethod
+    def format_unit_value(value, unit):
         """Print the value and unit in human-readable format.
 
             Parameters

@@ -105,7 +105,9 @@ test:
 
 # Evaluate code
 lint:
+	pyflakes ${PROJECT}
 	pylint ${PROJECT}
+	pycodestyle --max-line-length=120 ${PROJECT}
 
 # Generate source code documentation
 doc:

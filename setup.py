@@ -67,6 +67,8 @@ setup(
             'pytest-benchmark',
             'pytest-cov',
             'pycodestyle',
+            'pylint',
+            'pyflakes',
         ],
     },
     cmdclass={'test': RunTests},

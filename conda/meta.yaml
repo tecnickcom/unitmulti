@@ -24,6 +24,8 @@ test:
     - pytest-cov
     - pytest-benchmark >=3.2.*
     - pycodestyle
+    - pylint
+    - pyflakes
   imports:
     - unitmulti
 
