@@ -15,7 +15,8 @@ def read(fname):
 
 class RunTests(Command):
     """Run all tests."""
-    description = 'run tests'
+
+    description = "run tests"
     user_options = []
 
     def initialize_options(self):
@@ -26,50 +27,51 @@ class RunTests(Command):
 
     def run(self):
         """Run all tests!"""
-        errno = call([
-            'py.test',
-            '--verbose',
-            '--cov=unitmulti',
-            '--cov-report=term-missing',
-            '--cov-config=.coveragerc',
-            '--junitxml=.junit.xml',
-        ])
+        errno = call(
+            [
+                "py.test",
+                "--verbose",
+                "--cov=unitmulti",
+                "--cov-report=term-missing",
+                "--cov-config=.coveragerc",
+                "--junitxml=.junit.xml",
+            ]
+        )
         raise SystemExit(errno)
 
 
 setup(
-    name='unitmulti',
-    version=VERSION + '.' + RELEASE,
-    description='Dummy Project',
-    long_description=read('README.md'),
-    url='https://github.com/tecnickcom/unitmulti',
-    author='Tecnick.com LTD',
-    author_email='info@tecnick.com',
-    license='MIT',
+    name="unitmulti",
+    version=VERSION + "." + RELEASE,
+    description="Dummy Project",
+    long_description=read("README.md"),
+    url="https://github.com/tecnickcom/unitmulti",
+    author="Tecnick.com LTD",
+    author_email="info@tecnick.com",
+    license="MIT",
     classifiers=[
-        'Intended Audience :: Developers',
-        'Topic :: Utilities',
-        'License :: MIT',
-        'Natural Language :: English',
-        'Operating System :: OS Independent',
-        'Programming Language :: Python :: 3.6',
+        "Intended Audience :: Developers",
+        "Topic :: Utilities",
+        "License :: MIT",
+        "Natural Language :: English",
+        "Operating System :: OS Independent",
+        "Programming Language :: Python :: 3.6",
     ],
-    keywords='unitmulti',
-    packages=find_packages(exclude=['docs', 'test*']),
-    data_files=[
-        ('info', ['VERSION', 'RELEASE', 'LICENSE', 'README.md'])
-    ],
+    keywords="unitmulti",
+    packages=find_packages(exclude=["docs", "test*"]),
+    data_files=[("info", ["VERSION", "RELEASE", "LICENSE", "README.md"])],
     install_requires=[],
     extras_require={
-        'test': [
-            'coverage',
-            'pytest',
-            'pytest-benchmark',
-            'pytest-cov',
-            'pycodestyle',
-            'pylint',
-            'pyflakes',
-        ],
+        "test": [
+            "coverage",
+            "pytest",
+            "pytest-benchmark",
+            "pytest-cov",
+            "pycodestyle",
+            "pylint",
+            "pyflakes",
+            "black",
+        ]
     },
-    cmdclass={'test': RunTests},
+    cmdclass={"test": RunTests},
 )

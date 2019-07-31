@@ -4,11 +4,35 @@
 class Convert(object):
     """Methods to convert units to SI and IEC multiples and submultiples."""
 
-    SI_STEP = 10**3   # (1000) : multiplication factor for SI (International System) units
-    IEC_STEP = 2**10  # (1024) : multiplication factor for IEC (International Electrotechnical Commission) units
+    SI_STEP = (
+        10 ** 3
+    )  # (1000) : multiplication factor for SI (International System) units
+    IEC_STEP = (
+        2 ** 10
+    )  # (1024) : multiplication factor for IEC (International Electrotechnical Commission) units
 
-    UNIT_MULTIPLE = ['', 'K', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y']     # prefixes for multiples
-    UNIT_SUBMULTIPLE = ['', 'm', 'u', 'n', 'p', 'f', 'a', 'z', 'y']  # prefixes for submultiples
+    UNIT_MULTIPLE = [
+        "",
+        "K",
+        "M",
+        "G",
+        "T",
+        "P",
+        "E",
+        "Z",
+        "Y",
+    ]  # prefixes for multiples
+    UNIT_SUBMULTIPLE = [
+        "",
+        "m",
+        "u",
+        "n",
+        "p",
+        "f",
+        "a",
+        "z",
+        "y",
+    ]  # prefixes for submultiples
 
     PRECISION = 3  # number of decimal places to keep
 
@@ -30,11 +54,11 @@ class Convert(object):
                 unit prefix
         """
         value = float(value)
-        prefix = ''
+        prefix = ""
         for prefix in self.UNIT_MULTIPLE:
             if value < step:
                 break
-            if prefix != 'Y':
+            if prefix != "Y":
                 value = value / step
         return round(value, self.PRECISION), prefix
 
@@ -54,9 +78,9 @@ class Convert(object):
                 unit with multiple prefix
         """
         num, unit = self.get_value_multiple(value, self.IEC_STEP)
-        if unit == '':
-            return num, 'B'
-        return num, '{0}iB'.format(unit)
+        if unit == "":
+            return num, "B"
+        return num, "{0}iB".format(unit)
 
     def get_si_value_multiple(self, value, base_unit):
         """Returns the SI multiple and prefix of the input value.
@@ -76,7 +100,7 @@ class Convert(object):
                 unit with multiple prefix
         """
         num, unit = self.get_value_multiple(value, self.SI_STEP)
-        return num, '{0}{1}'.format(unit, base_unit)
+        return num, "{0}{1}".format(unit, base_unit)
 
     def get_value_submultiple(self, value, base_unit):
         """Returns the submultiple and prefix of the input value.
@@ -98,13 +122,13 @@ class Convert(object):
         value = float(value)
         if value == 0:
             return value, base_unit
-        prefix = ''
+        prefix = ""
         for prefix in self.UNIT_SUBMULTIPLE:
             if value >= 1:
                 break
-            if prefix != 'y':
+            if prefix != "y":
                 value = value * self.SI_STEP
-        return round(value, self.PRECISION), '{0}{1}'.format(prefix, base_unit)
+        return round(value, self.PRECISION), "{0}{1}".format(prefix, base_unit)
 
     @staticmethod
     def format_unit_value(value, unit):
@@ -122,6 +146,6 @@ class Convert(object):
             string
                 value with unit
         """
-        if unit == 'B':
-            return '{0:5.0f} {1}'.format(value, unit)
-        return '{0:5.1f} {1}'.format(value, unit)
+        if unit == "B":
+            return "{0:5.0f} {1}".format(value, unit)
+        return "{0:5.1f} {1}".format(value, unit)

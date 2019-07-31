@@ -96,11 +96,11 @@ build: clean version conda
 wheel: clean version
 	python setup.py sdist bdist_wheel
 
-# Test the project in a Python 2.7 virtual environment
+# Test the project in a Python 3.6 virtual environment
 .PHONY: vtest
 vtest:
 	rm -rf venv
-	virtualenv -p /usr/bin/python2.7 venv
+	virtualenv -p /usr/bin/python3.6 venv
 	source venv/bin/activate && pip install -e .[test] && make test && coverage html
 
 # Test using setuptools
@@ -123,7 +123,7 @@ doc:
 # Format the source code
 .PHONY: format
 format:
-	find . -path ./venv -prune -o -path ./target -prune -o -type f -name '*.py' -exec autopep8 --in-place --max-line-length=255 {} \;
+	black ./unitmulti
 
 # Remove any build artifact
 .PHONY: clean
